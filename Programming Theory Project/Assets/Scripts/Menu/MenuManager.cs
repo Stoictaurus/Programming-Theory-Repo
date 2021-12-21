@@ -19,6 +19,6 @@ public class MenuManager : MonoBehaviour
 
     public void StartGameAction()
     {
-        GameManager.Instance.LoadSceneMain();
+        GameManager.Instance.LoadSceneMain( inputName.text );
     }
 }

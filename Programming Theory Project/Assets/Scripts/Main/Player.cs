@@ -9,8 +9,17 @@ public class Player : MonoBehaviour
     private MainManager _manager;
     
     [SerializeField] private float speed = 5.0f;
+    private readonly int hungerMax = 100;
     public int hunger { get; private set; } = 100; //Encapsulation
+    private readonly int restMax = 100;
     public int rest { get; private set; } = 100; //Encapsulation
+    public string playerName { get; private set; }
+
+    private void Awake()
+    {
+        playerName = GameManager.Instance.PlayerName;
+    }
+
     void Start()
     {
         roomBounds.bottom = -10f;
@@ -20,6 +29,7 @@ public class Player : MonoBehaviour
 
         _manager = FindObjectOfType<MainManager>();
         StartCoroutine(TimePass());
+        _manager.DisplayPlayerStatus(gameObject);
     }
 
     IEnumerator TimePass()
@@ -37,7 +47,17 @@ public class Player : MonoBehaviour
         Move();
     }
 
-    private void LowerPlayerNeeds() //Abstraction
+    // Abstraction - Methods describe what happens in abstract, not what technically
+    public void FixRest() 
+    {
+        rest = restMax;
+    }
+
+    public void FixHunger()
+    {
+        hunger = hungerMax;
+    }
+    private void LowerPlayerNeeds() 
     {
         hunger--;
         rest--;
@@ -51,7 +71,7 @@ public class Player : MonoBehaviour
             rest = 0;
         }
     }
-    private void Move() //Abstraction
+    private void Move() 
     {
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");

@@ -21,12 +21,13 @@ public class MainManager : MonoBehaviour
         var playerScript = player.GetComponent<Player>();
         if (playerScript != null)
         {
-            playerName.text = playerScript.name;
+            playerName.text = playerScript.playerName;
             hungerText.text = "Hunger: " + playerScript.hunger;
             restText.text = "Rest   : " + playerScript.rest;
         }
         else
         {
+            playerName.text = "---";
             hungerText.text = "Hunger: -";
             restText.text = "Rest   : -";
         }

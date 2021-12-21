@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public string PlayerName { get; private set; } = "";
 
     private void Awake()
     {
@@ -20,8 +21,9 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void LoadSceneMain()
+    public void LoadSceneMain(string playerName)
     {
+        PlayerName = playerName;
         SceneManager.LoadScene(1);
     }
     
