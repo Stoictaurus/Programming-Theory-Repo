@@ -38,3 +38,16 @@ public class GameManager : MonoBehaviour
 #endif
     }
 }
+
+public struct RoomBounds
+{
+    public float top;
+    public float bottom;
+    public float left;
+    public float right;
+
+    public bool PointInBounds(Vector3 point)
+    {
+        return point.x > left && point.x < right && point.z > bottom && point.z < top;
+    }
+}
