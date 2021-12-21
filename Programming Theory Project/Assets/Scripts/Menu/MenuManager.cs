@@ -13,21 +13,12 @@ public class MenuManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ExitGame();
+            GameManager.Instance.ExitGame();
         }
     }
 
-    private void ExitGame()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.ExitPlaymode();
-#else
-        Application.Quit();
-#endif
-    }
     public void StartGameAction()
     {
-        // Nothing here yet
-        Debug.Log("Start game!");
+        GameManager.Instance.LoadSceneMain();
     }
 }
